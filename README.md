@@ -24,6 +24,7 @@ The goals / steps of this project are the following:
 [image4]: ./imgs/ColorandSobel.png "Color and Sobel Combined"
 [image5]: ./imgs/warped.png "Warped Image"
 [image6]: ./imgs/hist.png "Histogram"
+[image7]: ./imgs/hist.png "Histogram"
 [video1]: ./project_video.mp4 "Video"
 
 #### [Rubric](https://review.udacity.com/#!/rubrics/571/view) Points
@@ -105,17 +106,35 @@ Find the peak of the left and right halves of the histogram. These will be the s
 
 ![alt text][image6]
 
-
+Each image is horizontally divided into n windows and lanes lines are identified for each of these windows
 
 #### 5. Describe how (and identify where in your code) you calculated the radius of curvature of the lane and the position of the vehicle with respect to center.
 
-I did this in lines # through # in my code in `my_other_file.py`
+I did this in block 11 in the python notebook `Final_AdvancedLaneFinding.pynb`
+
+
+We assume a conversion factor for mapping lanes in pixel coordinate to real world coordinate. 
+
+If we're projecting a section of lane similar, the lane is about 30 meters long and 3.7 meters wide. Therefore, we are calculating the radius of curvature as follows:
+
+```
+# Define conversions in x and y from pixels space to meters
+ym_per_pix = 30/720 # meters per pixel in y dimension
+xm_per_pix = 3.7/700 # meters per pixel in x dimension
+    
+left_fit_cr = np.polyfit(lefty*ym_per_pix, leftx*xm_per_pix, 2)
+right_fit_cr = np.polyfit(righty*ym_per_pix, rightx*xm_per_pix, 2)
+# Calculate the new radii of curvature
+left_curverad = ((1 + (2*left_fit_cr[0]*y_eval*ym_per_pix + left_fit_cr[1])**2)**1.5) / np.absolute(2*left_fit_cr[0])
+right_curverad = ((1 + (2*right_fit_cr[0]*y_eval*ym_per_pix + right_fit_cr[1])**2)**1.5) / np.absolute(2*right_fit_cr[0])
+
+```
 
 #### 6. Provide an example image of your result plotted back down onto the road such that the lane area is identified clearly.
 
-I implemented this step in lines # through # in my code in `yet_another_file.py` in the function `map_lane()`.  Here is an example of my result on a test image:
+I implemented this step in block 11 in the python notebook `Final_AdvancedLaneFinding.pynb` in the function `pipeline_lane_finder()`.  Here is an example of my result on a test image:
 
-![alt text][image6]
+![alt text][image7]
 
 ---
 
@@ -126,10 +145,3 @@ I implemented this step in lines # through # in my code in `yet_another_file.py`
 Here's a [link to my video result](./project_video.mp4)
 
 ---
-
-### Discussion
-
-#### 1. Briefly discuss any problems / issues you faced in your implementation of this project.  Where will your pipeline likely fail?  What could you do to make it more robust?
-
-Here I'll talk about the approach I took, what techniques I used, what worked and why, where the pipeline might fail and how I might improve it if I were going to pursue this project further.  
-
