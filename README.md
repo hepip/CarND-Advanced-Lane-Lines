@@ -1,4 +1,9 @@
-#### **Advanced Lane Finding Project**
+##Writeup Template
+###You can use this file as a template for your writeup if you want to submit it as a markdown file, but feel free to use some other method and submit a pdf if you prefer.
+
+---
+
+**Advanced Lane Finding Project**
 
 The goals / steps of this project are the following:
 
@@ -18,7 +23,7 @@ The goals / steps of this project are the following:
 [image3]: ./imgs/SobelLandS.png "Sobel on L and S channel"
 [image4]: ./imgs/ColorandSobel.png "Color and Sobel Combined"
 [image5]: ./imgs/warped.png "Warped Image"
-[image6]: ./examples/example_output.jpg "Output"
+[image6]: ./imgs/hist.png "Histogram"
 [video1]: ./project_video.mp4 "Video"
 
 #### [Rubric](https://review.udacity.com/#!/rubrics/571/view) Points
@@ -40,8 +45,9 @@ I start by preparing "object points", which will be the (x, y, z) coordinates of
 
 I then used the output `objpoints` and `imgpoints` to compute the camera calibration and distortion coefficients using the `cv2.calibrateCamera()` function.  The value of Camera Matrix and Calibration coeffient was stored into a pickle file.
 
-I applied this distortion correction to the test image using the `cv2.undistort()` function. 
+I applied this distortion correction to the test image using the `cv2.undistort()` function and obtained this result: 
 
+![alt text][image1]
 
 ### Pipeline (single images)
 
@@ -54,18 +60,15 @@ To demonstrate this step, I will describe how I apply the distortion correction 
 I used a combination of color and gradient thresholds to generate a binary image.
 
 First, I coverted the image to HSV color space. We are going to experiment in the HSV and HLS color space as its lightness component varies the most under different lightning condition but its Hue and Saturation channel stay fairly consistent in shadow or excessive brightness.This allows us to detect different color lane lines more realiabily than in any other color space.
-The out from the yellow color mask and white color mask were combined together using bitwiseor operator to get the below output
-
+The out from the yellow color mask and white color mask were combined together using bitwiseor operator to get the below output.
 ![alt text][image2]
 
 Then, I converted the image to HLS space and applied Sobel filters on L and S channels. Lane lines tend to be close to be vertical. So we need to detect steep edges that are more likely to be a lane. Applying the Sobel operator to an image is a way of taking the derivative of the image in the x or y direction. Taking the gradient in the x direction emphasizes edges closer to vertical.  Alternatively, taking the gradient in the y direction emphasizes edges closer to horizontal.
 
 helper.abs_sobel_thresh takes in an image and optional Sobel kernel size, as well as thresholds for gradient magnitude. 
-
 ![alt text][image3]
 
 The above Sobel filter output was combined with color mask output to get the following output:
-
 ![alt text][image4]
 
 #### 3. Describe how (and identify where in your code) you performed a perspective transform and provide an example of a transformed image.
@@ -94,9 +97,15 @@ I verified that my perspective transform was working as expected by drawing the 
 
 #### 4. Describe how (and identify where in your code) you identified lane-line pixels and fit their positions with a polynomial?
 
-Then I did some other stuff and fit my lane lines with a 2nd order polynomial kinda like this:
+Take a histogram of the bottom half of the image binary warped image
+```
+histogram = np.sum(binary_warped[binary_warped.shape[0]/2:,:], axis=0)
+```
+Find the peak of the left and right halves of the histogram. These will be the starting point for the left and right lines.
 
-![alt text][image5]
+![alt text][image6]
+
+
 
 #### 5. Describe how (and identify where in your code) you calculated the radius of curvature of the lane and the position of the vehicle with respect to center.
 
