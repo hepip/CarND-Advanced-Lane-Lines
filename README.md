@@ -24,7 +24,7 @@ The goals / steps of this project are the following:
 [image4]: ./imgs/ColorandSobel.png "Color and Sobel Combined"
 [image5]: ./imgs/warped.png "Warped Image"
 [image6]: ./imgs/hist.png "Histogram"
-[image7]: ./imgs/hist.png "Histogram"
+[image7]: ./imgs/finalPlot.png "Final"
 [video1]: ./project_video.mp4 "Video"
 
 #### [Rubric](https://review.udacity.com/#!/rubrics/571/view) Points
