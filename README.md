@@ -145,3 +145,9 @@ I implemented this step in block 11 in the python notebook `Final_AdvancedLaneFi
 Here's a [link to my video result](./project_video.mp4)
 
 ---
+
+### Discussion
+
+#### 1. Briefly discuss any problems / issues you faced in your implementation of this project.  Where will your pipeline likely fail?  What could you do to make it more robust?
+
+This was my very interesting problem that took a lot of time to fine tune. The hyper-parameter tuning process in my computer vision is tedious and time-consuming. I need to work on improving the sliding window approach. I would like to spend some more time making the pipeline more robust by trying out different combination of parameters around color spaces, sobel etc.
