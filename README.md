@@ -18,14 +18,14 @@ The goals / steps of this project are the following:
 
 [//]: # (Image References)
 
-[image1]: ./imgs/undistort.png "Undistorted"
-[image2]: ./imgs/ColorMaskCombined.png "Combined Color Mask"
-[image3]: ./imgs/SobelLandS.png "Sobel on L and S channel"
-[image4]: ./imgs/ColorandSobel.png "Color and Sobel Combined"
-[image5]: ./imgs/warped.png "Warped Image"
-[image6]: ./imgs/hist.png "Histogram"
-[image7]: ./imgs/finalPlot.png "Final"
-[video1]: ./project_video.mp4 "Video"
+[image1]: ./output_images/undistort.png "Undistorted"
+[image2]: ./output_images/ColorMaskCombined.png "Combined Color Mask"
+[image3]: ./output_images/SobelLandS.png "Sobel on L and S channel"
+[image4]: ./output_images/ColorandSobel.png "Color and Sobel Combined"
+[image5]: ./output_images/warped.png "Warped Image"
+[image6]: ./output_images/hist.png "Histogram"
+[image7]: ./output_images/finalPlot.png "Final"
+[video1]: ./project_video_output111.mp4 "Video"
 
 #### [Rubric](https://review.udacity.com/#!/rubrics/571/view) Points
 ##### Here I will consider the rubric points individually and describe how I addressed each point in my implementation.  
